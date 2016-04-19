@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="de.panda.rentapanda"
-          xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest
+    package="de.panda.rentapanda"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
         android:allowBackup="true"
@@ -15,6 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-    </application>
 
+        <provider
+            android:name="de.panda.rentapanda.database.ProviderJob"
+            android:authorities="${applicationId}.job.provider"
+            android:exported="false">
+        </provider>
+    </application>
 </manifest>

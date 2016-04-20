@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">RentAPanda</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDZRPYhrslMvoFHgRRr3YABx61kvp0GFHo</string>
+
+    <string name="detail_status_fulfilled">Fulfilled</string>
+    <string name="detail_status_pending">Pending to start</string>
+    <string name="detail_status_invoice">Invoiced</string>
+    <string name="detail_status_cancelled">Cancelled</string>
+    <string name="detail_status_error">Error</string>
+    <string name="detail_address">Address</string>
+    <string name="detail_payment_cash">Cash</string>
+    <string name="detail_payment_wire">Wire Transfer</string>
+    <string name="detail_recurrence_once">Once</string>
+    <string name="detail_recurrence_weekly">Weekly</string>
+    <string name="detail_recurrence_2week">Every 2 weeks</string>
+    <string name="detail_recurrence_monthly">Monthly</string>
+    <plurals name="detail_hour">
+        <item quantity="one">%s hour</item>
+        <item quantity="other">%s hours</item>
+    </plurals>
+    <string name="detail_extra_ironing">ironing</string>
+    <string name="detail_extra_oven">oven</string>
+    <string name="detail_extra_fridge">fridge</string>
+    <string name="detail_extra_windows">windows</string>
+    <string name="detail_extra_laundry">laundry</string>
 </resources>

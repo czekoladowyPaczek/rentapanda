@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    android:id="@+id/root"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include
+            layout="@layout/view_toolbar"/>
+    </android.support.design.widget.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <fragment
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:src="@drawable/ic_assignment_black_24dp"
+                    android:tint="@color/colorPrimary"/>
+
+                <TextView
+                    android:id="@+id/detail_date"
+                    style="@style/TextAppearance.AppCompat.Body2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="72dp"
+                    android:layout_marginTop="10dp"
+                    android:text="01.01.2016"/>
+
+                <TextView
+                    android:id="@+id/detail_duration"
+                    style="@style/TextAppearance.AppCompat.Body2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/detail_date"
+                    android:layout_marginLeft="72dp"
+                    android:layout_marginTop="5dp"
+                    android:text="1 hour twice a week"/>
+
+                <TextView
+                    android:id="@+id/detail_customer"
+                    style="@style/TextAppearance.AppCompat.Body2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/detail_duration"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="72dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Jon Doe"/>
+            </RelativeLayout>
+
+            <include
+                layout="@layout/view_spacer"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginLeft="72dp"
+                android:layout_marginStart="72dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:src="@drawable/ic_euro_symbol_black_24dp"
+                    android:tint="@color/colorPrimary"/>
+
+                <TextView
+                    android:id="@+id/detail_price"
+                    style="@style/TextAppearance.AppCompat.Body2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="72dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Halicka strasse 989"/>
+
+                <TextView
+                    android:id="@+id/detail_payment"
+                    style="@style/TextAppearance.AppCompat.Body2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/detail_price"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="72dp"
+                    android:layout_marginTop="5dp"
+                    android:text="10000 Berlin"/>
+            </RelativeLayout>
+
+            <include
+                layout="@layout/view_spacer"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginLeft="72dp"
+                android:layout_marginStart="72dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:src="@drawable/ic_place_black_24dp"
+                    android:tint="@color/colorPrimary"/>
+
+                <TextView
+                    android:id="@+id/detail_street"
+                    style="@style/TextAppearance.AppCompat.Body2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="72dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Halicka strasse 989"/>
+
+                <TextView
+                    android:id="@+id/detail_city"
+                    style="@style/TextAppearance.AppCompat.Body2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/detail_street"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="72dp"
+                    android:layout_marginTop="5dp"
+                    android:text="10000 Berlin"/>
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/detail_extra_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <include
+                    android:id="@+id/detail_extra_spacer"
+                    layout="@layout/view_spacer"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginLeft="72dp"
+                    android:layout_marginStart="72dp"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/detail_extra_spacer"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:src="@drawable/ic_info_black_24dp"
+                    android:tint="@color/colorPrimary"/>
+
+                <TextView
+                    android:id="@+id/detail_extra"
+                    style="@style/TextAppearance.AppCompat.Body2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/detail_extra_spacer"
+                    android:layout_marginLeft="72dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="10dp"/>
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+</android.support.design.widget.CoordinatorLayout>

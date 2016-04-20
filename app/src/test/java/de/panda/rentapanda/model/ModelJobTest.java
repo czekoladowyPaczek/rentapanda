@@ -49,7 +49,7 @@ public class ModelJobTest {
             "\"distance\": \"\"," +
             "\"job_date\": \"2016-03-04T00:00:00.000Z\"," +
             "\"extras\": \"\"," +
-            "\"order_duration\": 2," +
+            "\"order_duration\": \"2\"," +
             "\"order_id\": \"dc4n48ggy\"," +
             "\"order_time\": \"16:00\"," +
             "\"payment_method\": \"Cash\"," +
@@ -80,7 +80,7 @@ public class ModelJobTest {
         assertEquals(2, job.getExtras().length);
         assertEquals("oven", job.getExtras()[0]);
         assertEquals("test", job.getExtras()[1]);
-        assertEquals(2, job.getOrderDuration());
+        assertEquals("2", job.getOrderDuration());
         assertEquals("dc4n47ggy", job.getId());
         assertEquals("16:00", job.getOrderTime());
         assertEquals("Cash", job.getPaymentMethod());
@@ -133,7 +133,7 @@ public class ModelJobTest {
         assertEquals("testUser", job.getCustomerName());
         assertEquals("", job.getDistance());
         assertEquals(0, job.getExtras().length);
-        assertEquals(2, job.getOrderDuration());
+        assertEquals("2", job.getOrderDuration());
         assertEquals("dc4n48ggy", job.getId());
         assertEquals("16:00", job.getOrderTime());
         assertEquals("Cash", job.getPaymentMethod());

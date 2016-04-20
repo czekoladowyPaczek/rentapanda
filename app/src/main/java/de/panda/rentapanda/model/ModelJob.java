@@ -23,7 +23,7 @@ public class ModelJob implements Parcelable {
     private Date jobDate;
     private String extras;
     @SerializedName("order_duration")
-    private int orderDuration;
+    private String orderDuration;
     @SerializedName("order_id")
     private String id;
     @SerializedName("order_time")
@@ -44,7 +44,7 @@ public class ModelJob implements Parcelable {
     private String street;
     private String status;
 
-    ModelJob(String id, String customerName, Date jobDate, String orderTime, int orderDuration, String paymentMethod,
+    ModelJob(String id, String customerName, Date jobDate, String orderTime, String orderDuration, String paymentMethod,
                     String price, int recurrency, String city, String street, int postalCode, String status) {
         this.id = id;
         this.customerName = customerName;
@@ -66,7 +66,7 @@ public class ModelJob implements Parcelable {
         long tmpJobDate = in.readLong();
         jobDate = tmpJobDate != -1 ? new Date(tmpJobDate) : null;
         extras = in.readString();
-        orderDuration = in.readInt();
+        orderDuration = in.readString();
         id = in.readString();
         orderTime = in.readString();
         paymentMethod = in.readString();
@@ -86,7 +86,7 @@ public class ModelJob implements Parcelable {
         dest.writeString(distance);
         dest.writeLong(jobDate != null ? jobDate.getTime() : -1L);
         dest.writeString(extras);
-        dest.writeInt(orderDuration);
+        dest.writeString(orderDuration);
         dest.writeString(id);
         dest.writeString(orderTime);
         dest.writeString(paymentMethod);
@@ -134,7 +134,7 @@ public class ModelJob implements Parcelable {
         return TextUtils.isEmpty(extras) ? new String[0] : extras.split(";");
     }
 
-    public int getOrderDuration() {
+    public String getOrderDuration() {
         return orderDuration;
     }
 
@@ -182,6 +182,10 @@ public class ModelJob implements Parcelable {
         return status;
     }
 
+    public boolean hasPosition() {
+        return !TextUtils.isEmpty(lat);
+    }
+
     public ContentValues getContentValues() {
         ContentValues values = new ContentValues(16);
         values.put(TableJob.COLUMN_CITY, city);
@@ -203,12 +207,12 @@ public class ModelJob implements Parcelable {
         return values;
     }
 
-    public static class ModelJobBuilder {
+    public static class Builder {
         private String customerName;
         private String distance;
         private Date jobDate;
         private String extras;
-        private int orderDuration;
+        private String orderDuration;
         private String id;
         private String orderTime;
         private String paymentMethod;
@@ -221,9 +225,9 @@ public class ModelJob implements Parcelable {
         private String street;
         private String status;
 
-        public ModelJobBuilder(String id, String customerName, Date jobDate, String orderTime, int orderDuration,
-                               String paymentMethod, String price, int recurrency, String city, String street, int postalCode,
-                               String status) {
+        public Builder(String id, String customerName, Date jobDate, String orderTime, String orderDuration,
+                       String paymentMethod, String price, int recurrency, String city, String street, int postalCode,
+                       String status) {
             this.id = id;
             this.customerName = customerName;
             this.jobDate = jobDate;
@@ -238,22 +242,22 @@ public class ModelJob implements Parcelable {
             this.orderDuration = orderDuration;
         }
 
-        public ModelJobBuilder lat(String lat) {
+        public Builder lat(String lat) {
             this.lat = lat;
             return this;
         }
 
-        public ModelJobBuilder lon(String lon) {
+        public Builder lon(String lon) {
             this.lon = lon;
             return this;
         }
 
-        public ModelJobBuilder distance(String distance) {
+        public Builder distance(String distance) {
             this.distance = distance;
             return this;
         }
 
-        public ModelJobBuilder extras(String extras) {
+        public Builder extras(String extras) {
             this.extras = extras;
             return this;
         }

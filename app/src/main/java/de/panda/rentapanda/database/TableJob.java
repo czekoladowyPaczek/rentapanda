@@ -31,7 +31,7 @@ public class TableJob {
             + COLUMN_DISTANCE + " text, "
             + COLUMN_DATE + " long, "
             + COLUMN_EXTRAS + " text, "
-            + COLUMN_DURATION + " int, "
+            + COLUMN_DURATION + " text, "
             + COLUMN_ORDER_TIME + " text, "
             + COLUMN_PAYMENT + " text, "
             + COLUMN_PRICE + " text, "

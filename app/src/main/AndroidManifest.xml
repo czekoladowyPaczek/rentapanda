@@ -25,8 +25,9 @@
 
         <provider
             android:name="de.panda.rentapanda.database.ProviderJob"
-            android:authorities="${applicationId}.job.provider"
-            android:exported="false">
+            android:authorities="de.panda.rentapanda.job.provider"
+            android:exported="false"
+            android:enabled="true">
         </provider>
     </application>
 </manifest>

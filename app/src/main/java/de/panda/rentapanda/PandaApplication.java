@@ -4,17 +4,22 @@ import android.app.Application;
 import android.content.ComponentCallbacks2;
 import android.support.annotation.VisibleForTesting;
 
+import javax.inject.Inject;
+
 import de.panda.rentapanda.graph.component.ActivityComponent;
 import de.panda.rentapanda.graph.component.DaggerActivityComponent;
 import de.panda.rentapanda.graph.module.ApiModule;
+import de.panda.rentapanda.graph.module.PresenterModule;
 import de.panda.rentapanda.graph.module.ServiceModule;
+import de.panda.rentapanda.service.BackgroundService;
 
 /**
  * @author Marcin
  */
 public class PandaApplication extends Application implements ComponentCallbacks2 {
 
-    private boolean wasInBackground = true;
+    @Inject
+    BackgroundService backgroundService;
     private ActivityComponent activityComponent;
 
     @Override
@@ -24,13 +29,16 @@ public class PandaApplication extends Application implements ComponentCallbacks2
         activityComponent = DaggerActivityComponent.builder()
                 .apiModule(new ApiModule(this))
                 .serviceModule(new ServiceModule())
+                .presenterModule(new PresenterModule())
                 .build();
+
+        activityComponent.inject(this);
     }
 
     @Override
     public void onTrimMemory(int level) {
         if (level >= ComponentCallbacks2.TRIM_MEMORY_UI_HIDDEN){
-            wasInBackground = true;
+            backgroundService.setWasInBackground(true);
         }
 
         super.onTrimMemory(level);
@@ -43,13 +51,5 @@ public class PandaApplication extends Application implements ComponentCallbacks2
     @VisibleForTesting
     public void setActivityComponent(ActivityComponent activityComponent) {
         this.activityComponent = activityComponent;
-    }
-
-    public boolean wasInBackground() {
-        return wasInBackground;
-    }
-
-    public void setWasInBackground(boolean background) {
-        wasInBackground = background;
     }
 }

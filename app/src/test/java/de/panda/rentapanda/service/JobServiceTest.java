@@ -17,6 +17,7 @@ import static junit.framework.Assert.assertEquals;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -43,7 +44,7 @@ public class JobServiceTest {
         when(api.getJobs()).thenReturn(Observable.just(jobs));
 
         TestSubscriber<List<ModelJob>> subscriber = new TestSubscriber<>();
-        service.getJobs().subscribe(subscriber);
+        service.getJobs(false).subscribe(subscriber);
 
         verify(storage).deleteJobs();
         verify(storage).insertJobs(any(List.class));
@@ -57,10 +58,46 @@ public class JobServiceTest {
         when(api.getJobs()).thenReturn(Observable.error(new Throwable("exception")));
 
         TestSubscriber<List<ModelJob>> subscriber = new TestSubscriber<>();
-        service.getJobs().subscribe(subscriber);
+        service.getJobs(false).subscribe(subscriber);
 
         verify(storage, never()).deleteJobs();
         verify(storage, never()).insertJobs(any(List.class));
         subscriber.assertError(Throwable.class);
+    }
+
+    @Test
+    public void getJobs_shouldReturnCachedObservable() {
+        List<ModelJob> jobs = new ArrayList<>();
+        jobs.add(ModelJobTest.getFullModelJob());
+        when(api.getJobs()).thenReturn(Observable.just(jobs));
+
+        TestSubscriber<List<ModelJob>> first = new TestSubscriber<>();
+        service.getJobs(true).subscribe(first);
+        TestSubscriber<List<ModelJob>> second = new TestSubscriber<>();
+        service.getJobs(true).subscribe(second);
+
+        first.assertNoErrors();
+        second.assertNoErrors();
+
+        verify(storage, times(1)).deleteJobs();
+        verify(storage, times(1)).insertJobs(any(List.class));
+    }
+
+    @Test
+    public void getJobs_shouldNotReturnCachedObservable() {
+        List<ModelJob> jobs = new ArrayList<>();
+        jobs.add(ModelJobTest.getFullModelJob());
+        when(api.getJobs()).thenReturn(Observable.just(jobs));
+
+        TestSubscriber<List<ModelJob>> first = new TestSubscriber<>();
+        service.getJobs(true).subscribe(first);
+        TestSubscriber<List<ModelJob>> second = new TestSubscriber<>();
+        service.getJobs(false).subscribe(second);
+
+        first.assertNoErrors();
+        second.assertNoErrors();
+
+        verify(storage, times(2)).deleteJobs();
+        verify(storage, times(2)).insertJobs(any(List.class));
     }
 }

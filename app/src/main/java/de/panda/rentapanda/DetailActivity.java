@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -151,5 +152,6 @@ public class DetailActivity extends AppCompatActivity implements OnMapReadyCallb
         LatLng position = new LatLng(Double.parseDouble(job.getLat()), Double.parseDouble(job.getLon()));
         map.addMarker(new MarkerOptions()
             .position(position));
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(position, 12));
     }
 }

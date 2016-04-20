@@ -10,7 +10,7 @@ import rx.Observable;
  * @author Marcin
  */
 public interface PandaApi {
-    String ENDPOINT = "http://rentapanda.apiblueprint.org";
+    String ENDPOINT = "http://private-anon-3d8482944-rentapanda.apiary-mock.com/";
 
     @GET ("/jobs")
     Observable<List<ModelJob>> getJobs();

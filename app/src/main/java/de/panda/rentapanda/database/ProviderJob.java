@@ -14,8 +14,6 @@ import android.util.Log;
 import java.util.Arrays;
 import java.util.HashSet;
 
-import de.panda.rentapanda.BuildConfig;
-
 /**
  * @author Marcin
  */
@@ -23,7 +21,7 @@ public class ProviderJob extends ContentProvider {
     public static final int JOBS = 1;
     public static final int JOB_ID = 2;
 
-    public static final String AUTHORITY = BuildConfig.APPLICATION_ID + "job.provider";
+    public static final String AUTHORITY = "de.panda.rentapanda.job.provider";
     public static final String BASE_PATH = "jobs";
 
     public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/" + BASE_PATH);

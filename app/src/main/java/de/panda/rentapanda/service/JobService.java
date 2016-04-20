@@ -13,17 +13,23 @@ import rx.Observable;
 public class JobService {
     private PandaApi api;
     private StorageManager storageManager;
+    private Observable<List<ModelJob>> jobObservable;
 
     public JobService(PandaApi api, StorageManager storage) {
         this.api = api;
         this.storageManager = storage;
     }
 
-    public Observable<List<ModelJob>> getJobs() {
-        return api.getJobs()
+    public Observable<List<ModelJob>> getJobs(boolean cached) {
+        if (cached && jobObservable != null) {
+            return jobObservable;
+        }
+        jobObservable = api.getJobs()
                 .doOnNext(jobs -> {
                     storageManager.deleteJobs();
                     storageManager.insertJobs(jobs);
-                });
+                })
+                .cache();
+        return jobObservable;
     }
 }

@@ -23,4 +23,9 @@
     <string name="detail_extra_fridge">fridge</string>
     <string name="detail_extra_windows">windows</string>
     <string name="detail_extra_laundry">laundry</string>
+
+    <string name="main_loading">Loading</string>
+    <string name="main_empty">No jobs available</string>
+    <string name="main_error">Some error occurred</string>
+    <string name="main_retry">Retry</string>
 </resources>
